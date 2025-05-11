@@ -1,5 +1,12 @@
+import configparser
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackContext, CallbackQueryHandler
+
+# Функция для загрузки конфигурации
+def load_config():
+    config = configparser.ConfigParser()
+    config.read('config.cfg')
+    return config['Settings']['Token'].strip('"')  # Удаляем кавычки
 
 # Функция для отправки ключа
 async def send_key(update: Update, context: CallbackContext) -> None:
@@ -38,8 +45,8 @@ async def handle_button_click(update: Update, context: CallbackContext) -> None:
         await send_payment_link(update, context)  # Передаем update
 
 def main():
-    # Ваш токен здесь
-    TOKEN = 'TOKEN'
+    # Загружаем токен из конфигурационного файла
+    TOKEN = load_config()
     
     app = Application.builder().token(TOKEN).build()
 
