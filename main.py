@@ -39,7 +39,7 @@ async def handle_button_click(update: Update, context: CallbackContext) -> None:
 
 def main():
     # Ваш токен здесь
-    TOKEN = '7707653021:AAH4vn2HBSCp0KXc2erc2aMvuZHv27tSOwo'
+    TOKEN = 'TOKEN'
     
     app = Application.builder().token(TOKEN).build()
 
